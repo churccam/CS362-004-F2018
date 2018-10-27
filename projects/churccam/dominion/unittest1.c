@@ -29,20 +29,20 @@ int main(int argc, char** argv){
                  sea_hag, tribute, smithy, council_room};
 
     //initialize game state
-    struct gameState test_GS;
-
-    //start game
-    initializeGame(numPlayers, k, seed, &test_GS);
+    struct gameState default_GS, test_GS;
 
     //testing variables
     int expectedValue;
-    int testCount = 5;
+    int testCount = 6;
     int test_passed=0;
 
 
     printf("\n--------------- Testing Card: %s ---------------\n", TEST_FUNCTION);
 
     //--------------- TEST 1: Add 10 Coppers ---------------:
+    //start game
+    initializeGame(numPlayers, k, seed, &test_GS);
+
     test_GS.coins = 0;
     test_GS.handCount[currentPlayer] = 0;
     expectedValue = 10;
@@ -65,6 +65,9 @@ int main(int argc, char** argv){
 
 
     //--------------- TEST 2: Add 10 SILVERS ---------------:
+    //reset game state
+    memcpy(&test_GS, &default_GS, sizeof(struct gameState));
+
     test_GS.coins = 0;
     test_GS.handCount[currentPlayer] = 0;
     expectedValue = 20;
@@ -86,6 +89,9 @@ int main(int argc, char** argv){
     printf("OUTPUT: coins: %d     expected:%d\n\n", test_GS.coins, expectedValue);
 
     //--------------- TEST 3: Add 10 GOLDS ---------------:
+    //reset game state
+    memcpy(&test_GS, &default_GS, sizeof(struct gameState));
+
     test_GS.coins = 0;
     test_GS.handCount[currentPlayer] = 0;
     expectedValue = 30;
@@ -107,6 +113,9 @@ int main(int argc, char** argv){
     printf("OUTPUT: coins: %d     expected:%d\n\n", test_GS.coins, expectedValue);
 
     //--------------- TEST 4: Add 1 Copper, 1 Silver, 1 Gold ---------------:
+    //reset game state
+    memcpy(&test_GS, &default_GS, sizeof(struct gameState));
+
     test_GS.coins = 0;
     test_GS.handCount[currentPlayer] = 3;
     expectedValue = 6;
@@ -127,6 +136,9 @@ int main(int argc, char** argv){
     printf("OUTPUT: coins: %d     expected:%d\n\n", test_GS.coins, expectedValue);
 
     //--------------- TEST 5: Add 10 Bonus coins ---------------:
+    //reset game state
+    memcpy(&test_GS, &default_GS, sizeof(struct gameState));
+
     test_GS.coins = 0;
     test_GS.handCount[currentPlayer] = 0;
     expectedValue = 10;
@@ -143,8 +155,34 @@ int main(int argc, char** argv){
     }
     printf("OUTPUT: coins: %d     expected:%d\n\n", test_GS.coins, expectedValue);
 
+    //--------------- TEST 6: Add 10 Cards with no coin value ---------------:
+    //reset game state
+    memcpy(&test_GS, &default_GS, sizeof(struct gameState));
+
+    test_GS.coins = 0;
+    test_GS.handCount[currentPlayer] = 0;
+    expectedValue = 0;
+    //add 10 gold cards to player hand
+    for(int i = 0; i<10; i++){
+        test_GS.hand[currentPlayer][i] = adventurer;
+        test_GS.handCount[currentPlayer] += 1;
+    }
+
+    //updateCoins
+    updateCoins(currentPlayer, &test_GS, 0);
+    printf("TEST 6: Add 10 cards with no coin value\n");
+    if(test_GS.coins==expectedValue){
+        printf("RESULT: PASSED!\n");
+        test_passed+=1;
+    }else{
+        printf("RESULT: FAILED!\n");
+    }
+    printf("OUTPUT: coins: %d     expected:%d\n\n", test_GS.coins, expectedValue);
+
+    //TESTING COMPLETE--------------------------------------------------------
     printf("\nTESTING COMPLETE: %s", TEST_FUNCTION);
     printf("\nRESULTS: %i/%i Tests Passed\n\n", test_passed, testCount);
+
 
 
 
