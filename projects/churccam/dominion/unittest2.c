@@ -220,8 +220,8 @@ int main(int argc, char** argv) {
     }
 
     //TESTING COMPLETE--------------------------------------------------------
-    printf("\nTESTING COMPLETE: %s", TEST_FUNCTION);
-    printf("\nRESULTS: %i/%i Tests Passed\n\n", test_passed, testCount);
+    printf("---------------TESTING COMPLETE: %s---------------", TEST_FUNCTION);
+    printf("\n---------------RESULTS: %i/%i Tests Passed----------------\n\n", test_passed, testCount);
 
 }
 

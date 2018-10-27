@@ -35,14 +35,21 @@ unittest1: dominion.o rngs.o
 unittest2: unittest2.c dominion.o rngs.o
 	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
 
+unittest3: unittest3.c dominion.o rngs.o
+	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
+
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
+
+cardtest1: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player unittest1 unittest2 unittest4
+all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe UnitTestSuite.exe UnitTestSuite UnitTestSuite.exe unittest1 unittest2.exe unittest2  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
-	rm -f *.o unittest4.exe unittest4 *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o testDrawCard testDrawCard.exe playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out
+	rm -f *.o unittest1 unittest1.exe unittest2.exe unittest2 unittest3.exe unittest3 unittest4.exe unittest4 *.gcov *.gcda *.gcno *.so *.out
+	rm -f *.o  cardtest1 cardtest1.exe *.gcov *.gcda *.gcno *.so *.out

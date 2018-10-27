@@ -101,7 +101,9 @@ int main(int argc, char** argv)
     }
     printf("OUTPUT: Game status: %d     expected:%d\n\n", testValue, expectedValue);
 
-
+    //TESTING COMPLETE--------------------------------------------------------
+    printf("---------------TESTING COMPLETE: %s---------------", TEST_FUNCTION);
+    printf("\n---------------RESULTS: %i/%i Tests Passed----------------\n\n", test_passed, 3);
     return 0;
 }
 

@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdlib.h>
 
+
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
@@ -229,7 +230,7 @@ int shuffle(int player, struct gameState *state) {
 }
 
 int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
-{	
+{
   int card;
   int coin_bonus = 0; 		//tracks coins gain from actions
 
@@ -265,7 +266,6 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
 
   //update coins (Treasure cards may be added with card draws)
   updateCoins(state->whoseTurn, state, coin_bonus);
-	
   return 0;
 }
 
@@ -526,7 +526,7 @@ int drawCard(int player, struct gameState *state)
 {	int count;
   int deckCounter;
   if (state->deckCount[player] <= 0){//Deck is empty
-    
+    printf("deck empty");
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
@@ -643,6 +643,199 @@ int getCost(int cardNumber)
   return -1;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// card refactored code below - Assignment 2 - these functions are called from the switch statement within cardEffect
+//int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+
+
+
+/*
+Smithy
+Original card effect found in switch statement
+case smithy:
+      //+3 Cards
+      for (i = 0; i < 3; i++)
+	{
+	  drawCard(currentPlayer, state);
+	}
+
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+
+
+*/
+void smithy_cardEffect(int handPos, int currentPlayer, struct gameState *state){
+
+  //should +3 Cards - bug: +2 Cards
+  for (int i = 0; i < 2; i++)
+  {
+    drawCard(currentPlayer, state);
+  }
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+
+}
+
+
+/*
+Adventurer
+Original card effect found in switch statement
+case adventurer:
+      while(drawntreasure<2){
+	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+	  shuffle(currentPlayer, state);
+	}
+	drawCard(currentPlayer, state);
+	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+	  drawntreasure++;
+	else{
+	  temphand[z]=cardDrawn;
+	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+	  z++;
+	}
+      }
+      while(z-1>=0){
+	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+	z=z-1;
+      }
+
+*/
+void adventurer_cardEffect(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int z, int *temphand){
+  drawCard(currentPlayer, state);
+}
+
+
+/*
+Village
+Original card effect found in switch statement
+case village:
+      //+1 Card
+      drawCard(currentPlayer, state);
+
+      //+2 Actions
+      state->numActions = state->numActions + 2;
+
+      //discard played card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+
+*/
+void village_cardEffect(int currentPlayer, struct gameState *state, int handPos){
+  //should +1 Card - bug: +0 Cards
+  //  drawCard(currentPlayer, state);
+
+  //should +2 Actions - bug: +1 Actions
+  state->numActions = state->numActions + 1;
+
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+}
+
+
+/*
+Steward
+Original card effect found in switch statement
+case steward:
+      if (choice1 == 1)
+	{
+	  //+2 cards
+	  drawCard(currentPlayer, state);
+	  drawCard(currentPlayer, state);
+	}
+      else if (choice1 == 2)
+	{
+	  //+2 coins
+	  state->coins = state->coins + 2;
+	}
+      else
+	{
+	  //trash 2 cards in hand
+	  discardCard(choice2, currentPlayer, state, 1);
+	  discardCard(choice3, currentPlayer, state, 1);
+	}
+
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+
+*/
+void steward_cardEffect(int choice1, int currentPlayer, struct gameState *state, int choice2, int choice3, int handPos){
+  if (choice1 == 1)
+  {
+    //+2 cards
+    drawCard(currentPlayer, state);
+    drawCard(currentPlayer, state);
+  }
+  else if (choice1 == 2)
+  {
+    //should +2 coins -- bug: +2 cards
+    drawCard(currentPlayer, state);
+    drawCard(currentPlayer, state);
+  }
+  else
+  {
+    //should trash 2 cards in hand -- bug: +2 cards
+    drawCard(currentPlayer, state);
+    drawCard(currentPlayer, state);
+  }
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+}
+
+
+/*
+Great Hall
+Original card effect found in switch statement
+case great_hall:
+      //+1 Card
+      drawCard(currentPlayer, state);
+
+      //+1 Actions
+      state->numActions++;
+
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+
+*/
+void great_hall_cardEffect(int currentPlayer, struct gameState *state, int handPos){
+  //+1 Card
+  drawCard(currentPlayer, state);
+
+  //+1 Actions
+  state->numActions++;
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
@@ -669,7 +862,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case adventurer:
 	
 	//void adventurer_cardEffect(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int z, int *temphand){
-		adventurer_cardEffect(drawntreasure, state, currentPlayer, cardDrawn, z, temphand);
+		adventurer_cardEffect(drawntreasure, state, currentPlayer, cardDrawn, z, &temphand);
       
       return 0;
 			
@@ -1280,176 +1473,6 @@ int updateCoins(int player, struct gameState *state, int bonus)//updateCoinsFind
 
   return 0;
 }
-
-
-
-// card refactored code below - Assignment 2 - these functions are called from the switch statement within cardEffect
-//int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
-
-
-
-/*
-Smithy
-Original card effect found in switch statement
-case smithy:
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-
-
-*/
-void smithy_cardEffect(int handPos, int currentPlayer, struct gameState *state){
-	 //should +3 Cards - bug: +2 Cards
-      for (int i = 0; i < 2; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      
-}
-
-
-/*
-Adventurer
-Original card effect found in switch statement
-case adventurer:
-      while(drawntreasure<2){
-	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-	  shuffle(currentPlayer, state);
-	}
-	drawCard(currentPlayer, state);
-	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	  drawntreasure++;
-	else{
-	  temphand[z]=cardDrawn;
-	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-	  z++;
-	}
-      }
-      while(z-1>=0){
-	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	z=z-1;
-      }
-
-*/
-void adventurer_cardEffect(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int z, int *temphand){
-	 drawCard(currentPlayer, state);
-}
-
-
-/*
-Village
-Original card effect found in switch statement
-case village:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+2 Actions
-      state->numActions = state->numActions + 2;
-			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-
-*/
-void village_cardEffect(int currentPlayer, struct gameState *state, int handPos){
-	//should +1 Card - bug: +0 Cards
-    //  drawCard(currentPlayer, state);
-			
-      //should +2 Actions - bug: +1 Actions
-      state->numActions = state->numActions + 1;
-			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-}
-
-
-/*
-Steward
-Original card effect found in switch statement
-case steward:
-      if (choice1 == 1)
-	{
-	  //+2 cards
-	  drawCard(currentPlayer, state);
-	  drawCard(currentPlayer, state);
-	}
-      else if (choice1 == 2)
-	{
-	  //+2 coins
-	  state->coins = state->coins + 2;
-	}
-      else
-	{
-	  //trash 2 cards in hand
-	  discardCard(choice2, currentPlayer, state, 1);
-	  discardCard(choice3, currentPlayer, state, 1);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-
-*/
-void steward_cardEffect(int choice1, int currentPlayer, struct gameState *state, int choice2, int choice3, int handPos){
-      if (choice1 == 1)
-	{
-	  //+2 cards
-	  drawCard(currentPlayer, state);
-	  drawCard(currentPlayer, state);
-	}
-      else if (choice1 == 2)
-	{
-	  //should +2 coins -- bug: +2 cards
-	  drawCard(currentPlayer, state);
-	  drawCard(currentPlayer, state);
-	}
-      else
-	{
-	  //should trash 2 cards in hand -- bug: +2 cards
-	  drawCard(currentPlayer, state);
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-}
-
-
-/*
-Great Hall
-Original card effect found in switch statement
-case great_hall:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-
-*/
-void great_hall_cardEffect(int currentPlayer, struct gameState *state, int handPos){
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-}
-
-
 
 
 
