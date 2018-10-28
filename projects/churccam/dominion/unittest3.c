@@ -23,9 +23,8 @@
 
 int buildHand(int player, struct gameState *test_GS){
     int hSize = rand() % MAX_HAND; //size of hand
-    int randCard; //random card
     int index = rand() % hSize;
-    test_GS->hand[player][index] = 1;
+    test_GS->hand[player][index] = copper;
     return index;
 }
 int main(int argc, char** argv){
@@ -37,7 +36,7 @@ int main(int argc, char** argv){
     int expectedValue;
     int test_passed = 0;
     int countValue;
-    int testNumber;
+    int testNumber=0;
     int handSize;
     int randomIndex;
     int returnCard;
@@ -64,7 +63,7 @@ int main(int argc, char** argv){
             printf("TEST %i: Player %i, Index: %i\n", testNumber, currentPlayer, randomIndex);
 
             returnCard = handCard(randomIndex, &test_GS);
-            if(returnCard == 1){
+            if(returnCard == copper){
                 printf("RESULT: PASSED!\n");
                 test_passed += 1;
             }
