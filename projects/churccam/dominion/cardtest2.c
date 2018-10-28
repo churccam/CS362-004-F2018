@@ -42,7 +42,8 @@ int main(int argc, char** argv) {
 
     int testValue;
     printf("\n--------------- Testing Card: %s ---------------\n", TEST_CARD);
-    //--------------- TEST 1: check that 2 cards are added to hand ---------------:
+
+    //--------------- TEST 1: + 2 cards, - 1 card (discard) ---------------:
     initializeGame(numPlayers, k, seed, &test_GS);
 
     test_GS.hand[currentPlayer][0] = adventurer;
