@@ -34,6 +34,7 @@ int main(int argc, char** argv) {
     int deckCard = gardens; // not in k
     int typeMatch = 1;
     int checkCard;
+    int bonus = 0;
 
     //initialize game state
     struct gameState default_GS, test_GS;
@@ -48,12 +49,14 @@ int main(int argc, char** argv) {
     //reset game state
     memcpy(&test_GS, &default_GS, sizeof(struct gameState));
 
-    //add smithy to hand
+    //setup player/add smithy to hand
     handPos = 0;
     test_GS.hand[currentPlayer][handPos] = smithy;
     test_GS.handCount[currentPlayer] = 1;
+    test_GS.numActions = 1;
 
     //make sure player has cards in deck
+    //int deckS = 10;
     test_GS.deckCount[currentPlayer] = 10;
     for (int i = 0; i < 10; i++) {
         test_GS.deck[currentPlayer][i] = deckCard;
@@ -62,13 +65,12 @@ int main(int argc, char** argv) {
     curHandCount = 0;
     expectedValue = 3;
 
-    //play smith card
-    test_GS.numActions = 1;
-    playCard(handPos, 0, 0, 0, &test_GS);
+    //use smithy card
+    cardEffect(smithy, 0, 0, 0, &test_GS, 0, &bonus);
 
     curHandCount = test_GS.handCount[currentPlayer];
 
-    printf("TEST 1: check if smithy is adding correct amount of cards to hand\n");
+    printf("TEST 1: +3 cards to hand\n");
     if (curHandCount == expectedValue) {
         printf("RESULT: PASSED!\n");
         test_passed += 1;
@@ -82,8 +84,7 @@ int main(int argc, char** argv) {
     }
 
     //--------------- TEST 2: check card types in player hand after playing smithy---------------:
-
-    printf("TEST 2: check if smithy add's cards from deck (by checking card type)\n");
+    printf("TEST 2: added cards from deck\n");
     if (typeMatch == 1) {
         printf("RESULT: PASSED!\n");
         test_passed += 1;
@@ -92,9 +93,21 @@ int main(int argc, char** argv) {
     }
     printf("OUTPUT: Type match status: %d     expected:%d\n\n", typeMatch, 1);
 
+    //--------------- TEST 3: -3 cards from the deck---------------:
+    printf("TEST 3: -3 from deck\n");
+    if (test_GS.deckCount[currentPlayer] == 7) {
+        printf("RESULT: PASSED!\n");
+        test_passed += 1;
+    } else {
+        printf("RESULT: FAILED!\n");
+    }
+    printf("OUTPUT: Deck size: %d     expected:%d\n\n", test_GS.deckCount[currentPlayer], 7);
+
+
+
     //TESTING COMPLETE--------------------------------------------------------
     printf("---------------TESTING COMPLETE: %s---------------", TEST_CARD);
-    printf("\n---------------RESULTS: %i/%i Tests Passed----------------\n\n", test_passed, 2);
+    printf("\n---------------RESULTS: %i/%i Tests Passed----------------\n\n", test_passed, 3);
 
 }
 

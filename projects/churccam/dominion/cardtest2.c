@@ -19,15 +19,7 @@
 #include <stddef.h>
 
 #define TEST_CARD "adventurer"
-void buildDeck(int player, struct gameState *test_GS, int test_card){
-    int testCardCount = 0; //count of target card in hand
-    int dSize = 10;
 
-    for (int i = 0; i < dSize; i++){
-        test_GS->deck[player][i] = gardens;
-    }
-    test_GS->deckCount[player] = dSize;
-}
 int main(int argc, char** argv) {
     int seed = 100;
     int numPlayers = 2;
@@ -38,29 +30,33 @@ int main(int argc, char** argv) {
     //initialize game state
     struct gameState default_GS, test_GS;
     int expectedValue;
+    int bonus = 0;
 
 
     int testValue;
     printf("\n--------------- Testing Card: %s ---------------\n", TEST_CARD);
 
-    //--------------- TEST 1: + 2 cards, - 1 card (discard) ---------------:
+    //--------------- TEST 1: + 2 cards---------------:
     initializeGame(numPlayers, k, seed, &test_GS);
 
+    //set player hand
     test_GS.hand[currentPlayer][0] = adventurer;
     test_GS.handCount[currentPlayer]=1;
 
-    expectedValue = test_GS.handCount[currentPlayer]+1; // -1 adventurer card, + 2 treasure cards
-    playCard(0, 0, 0, 0, &test_GS);
+    expectedValue = test_GS.handCount[currentPlayer]+2; // 2 treasure cards
+
+    cardEffect(adventurer, 0, 0, 0, &test_GS, 0, &bonus);
+
     testValue = test_GS.handCount[currentPlayer];
 
-    printf("TEST 1: 2 cards drawn, 1 card discarded\n");
+    printf("TEST 1: + 2 cards\n");
     if (testValue == expectedValue) {
         printf("RESULT: PASSED!\n");
         test_passed += 1;
     } else {
         printf("RESULT: FAILED!\n");
     }
-    printf("OUTPUT: Cards in hand: %d     expected:%d\n\n", testValue, expectedValue);
+    printf("OUTPUT: Cards: %d     expected:%d\n\n", testValue, expectedValue);
 
 
 
@@ -74,44 +70,49 @@ int main(int argc, char** argv) {
             }
         }
     }
-    printf("TEST 2: 2 treasure cards added to hand\n");
+    printf("TEST 2: +2 treasure cards\n");
     if (treasureCount == 2) {
         printf("RESULT: PASSED!\n");
         test_passed += 1;
     } else {
         printf("RESULT: FAILED!\n");
     }
-    printf("OUTPUT: Treasure cards in hand: %d     expected:%d\n\n", treasureCount, 2);
+    printf("OUTPUT: Treasure cards: %d     expected:%d\n\n", treasureCount, 2);
 
 
-    //--------------- TEST 3: repeat test 1 with more varied beginner hand ---------------:
+    //--------------- TEST 3: deck has no treasure cards ---------------:
     memcpy(&test_GS, &default_GS, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &test_GS);
-    buildDeck(currentPlayer, &test_GS, 1);
 
-    int prePlayTreasureCount=0;
-    for (int i=0; i <testValue; i++){
-        if (test_GS.hand[currentPlayer][i] <= gold) {
-            if (test_GS.hand[currentPlayer][i] >= copper) {
-                prePlayTreasureCount++;
-            }
-        }
-    }
-
-    expectedValue = test_GS.handCount[currentPlayer] + 1;
+    //set player hand
     test_GS.hand[currentPlayer][0] = adventurer;
-    playCard(0, 0, 0, 0, &test_GS);
+    test_GS.handCount[currentPlayer]=1;
+
+    //fill deck with non-treasure cards
+    for (int i = 0; i < 10; i++){
+        test_GS.deck[currentPlayer][i] = gardens;
+    }
+    test_GS.deckCount[currentPlayer] = 10;
+
+    //fill discard with treasure cards
+    for (int i = 0; i < 10; i++){
+        test_GS.discard[currentPlayer][i] = copper;
+    }
+    test_GS.discardCount[currentPlayer] = 10;
+
+    expectedValue = test_GS.handCount[currentPlayer]+2; // 2 treasure cards
+    cardEffect(adventurer, 0, 0, 0, &test_GS, 0, &bonus);
 
     testValue = test_GS.handCount[currentPlayer];
 
-    printf("TEST 3: 2 cards drawn, 1 card discarded (larger starting hand)\n");
+    printf("TEST 3: +2 cards (start with no treasure in deck)\n");
     if (testValue == expectedValue) {
         printf("RESULT: PASSED!\n");
         test_passed += 1;
     } else {
         printf("RESULT: FAILED!\n");
     }
-    printf("OUTPUT: Hand count: %d     expected:%d\n\n", testValue, expectedValue);
+    printf("OUTPUT: Cards: %d     expected:%d\n\n", testValue, expectedValue);
 
     //--------------- TEST 4: 2 treasure cards in hand (start with no treasure in deck)---------------:
 
@@ -123,8 +124,9 @@ int main(int argc, char** argv) {
             }
         }
     }
-    expectedValue = prePlayTreasureCount+2;
-    printf("TEST 4: 2 treasure cards added to hand (start with no treasure in deck)\n");
+
+    expectedValue = 2;
+    printf("TEST 4:  +2 treasure cards (start with no treasure in deck)\n");
     if (treasureCount == expectedValue) {
         printf("RESULT: PASSED!\n");
         test_passed += 1;
