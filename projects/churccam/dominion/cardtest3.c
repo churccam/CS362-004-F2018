@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
     struct gameState default_GS, test_GS;
     int expectedValue;
     int testValue;
+    int bonus = 0;
 
     printf("\n--------------- Testing Card: %s ---------------\n", TEST_CARD);
     //--------------- TEST 1: increase player coins by 2 ---------------:
@@ -49,7 +50,7 @@ int main(int argc, char** argv) {
         test_GS.handCount[i] = 1;
     }
 
-    playCard(0,0,0,0, &test_GS);
+    cardEffect(cutpurse, 0, 0, 0, &test_GS, 0, &bonus);
 
     testValue = test_GS.coins;
     expectedValue = 2;
@@ -105,7 +106,7 @@ int main(int argc, char** argv) {
         expectedValue += 3;
     }
 
-    playCard(0,0,0,0, &test_GS);
+    cardEffect(cutpurse, 0, 0, 0, &test_GS, 0, &bonus);
 
     //count coppers in other players hands
     for(int i = 1; i < numPlayers; i++){
