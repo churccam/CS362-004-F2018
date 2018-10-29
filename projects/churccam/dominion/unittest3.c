@@ -33,11 +33,8 @@ int main(int argc, char** argv){
     int currentPlayer = 0;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute, smithy, council_room};
-    int expectedValue;
     int test_passed = 0;
-    int countValue;
     int testNumber=0;
-    int handSize;
     int randomIndex;
     int returnCard;
     int testCount=0;

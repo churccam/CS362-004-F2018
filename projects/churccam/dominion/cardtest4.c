@@ -8,6 +8,8 @@
  * cardtest4: cardtest4.c dominion.o rngs.o
  *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
  */
+
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -21,84 +23,140 @@
 #define TEST_CARD "village"
 
 int main(int argc, char** argv) {
+
+    int newCards = 1;
+    int discarded = 1;
+    int extraCoins = 0;
+    int shuffledCards = 0;
+    int extraActions = 2;
+
+    int i;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
     int seed = 1000;
     int numPlayers = 2;
     int currentPlayer = 0;
-    int k[10] = {adventurer, embargo, village, minion, mine, gardens,
+    int otherPlayer = 1;
+    int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute, smithy, council_room};
-    int test_passed = 0;
-    //initialize game state
+    int test_state_value;
+    int default_state_value;
+    int testPassCount = 0;
     struct gameState default_GS, test_GS;
-    int expectedValue;
-    int testValue;
-    int bonus = 0;
 
-    printf("\n--------------- Testing Card: %s ---------------\n", TEST_CARD);
+    // initialize a game state and player cards
+    initializeGame(numPlayers, k, seed, &default_GS);
+    printf("----------------- Testing Card: %s ----------------\n", TEST_CARD);
 
-    //--------------- TEST 1: + 1 card, -1 card (discard village)---------------:
-    //reset game state/game
+    // copy the game state to a test case
     memcpy(&test_GS, &default_GS, sizeof(struct gameState));
-    initializeGame(numPlayers, k, seed, &test_GS);
+    cardEffect(village, choice1, choice2, choice3, &test_GS, handpos, &bonus);
 
-    //set up current player
-    test_GS.hand[currentPlayer][0] = village;
-    int actions = 1;
-    test_GS.handCount[currentPlayer] = actions;
+    printf("CARD EFFECT: + 1 card, + 2 Actions\n");
 
-    expectedValue = test_GS.handCount[currentPlayer];
-    test_GS.numActions = 1;
-    cardEffect(village, 0, 0, 0, &test_GS, 0, &bonus);
-
-    testValue = test_GS.handCount[currentPlayer];
-    printf("TEST 1: +1 card, -1 card\n");
-    if (testValue == expectedValue) {
-        printf("RESULT: PASSED!\n");
-        test_passed += 1;
-    } else {
-        printf("RESULT: FAILED!\n");
+    printf("Current player state-check:\n");
+    //check player hand count
+    test_state_value = test_GS.handCount[currentPlayer];
+    default_state_value = default_GS.handCount[currentPlayer] + newCards - discarded;
+    printf("hand count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
     }
-    printf("OUTPUT: cards: %d     expected:%d\n\n", testValue, expectedValue);
 
-    //--------------- TEST 2: +2 Actions ---------------:
-    testValue = test_GS.numActions;
-    printf("TEST 2: +2 Actions\n");
-    if (testValue == actions+2) {
-        printf("RESULT: PASSED!\n");
-        test_passed += 1;
-    } else {
-        printf("RESULT: FAILED!\n");
+    //check player deck count
+    test_state_value = test_GS.deckCount[currentPlayer];
+    default_state_value = default_GS.deckCount[currentPlayer] - newCards + shuffledCards;
+    printf("deck count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
     }
-    printf("OUTPUT: Actions: %d     expected:%d\n\n", testValue, actions+2);
 
-    //--------------- TEST 3: discard check - makesure card has been changed ---------------:
-    testValue = test_GS.hand[currentPlayer][0];
-    int match = 0;
-    if(testValue == village){
-        match = 1;
+    //check player coins
+    test_state_value = test_GS.coins;
+    default_state_value = default_GS.coins+extraCoins;
+    printf("coin count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
     }
-    printf("TEST 3: discard check\n");
-    if (match == 0) {
-        printf("RESULT: PASSED!\n");
-        test_passed += 1;
-    } else {
-        printf("RESULT: FAILED!\n");
-    }
-    printf("OUTPUT: Card type match status: %d     expected:%d\n\n", match, 0);
 
-    //TESTING COMPLETE--------------------------------------------------------
-    printf("---------------TESTING COMPLETE: %s---------------", TEST_CARD);
-    printf("\n---------------RESULTS: %i/%i Tests Passed----------------\n\n", test_passed, 3);
+    //check player actions
+    test_state_value = test_GS.numActions;
+    default_state_value = default_GS.numActions+extraActions;
+    printf("action count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
+
+
+    //check other players state ----------------
+
+
+    printf("\nOther player state-check:\n");
+    //check player hand count
+    test_state_value = test_GS.handCount[otherPlayer];
+    default_state_value = default_GS.handCount[otherPlayer];
+    printf("hand count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
+
+    //check other player deck count
+    test_state_value = test_GS.deckCount[otherPlayer];
+    default_state_value = default_GS.deckCount[otherPlayer];
+    printf("deck count: %d |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
+
+    printf("\nVictory card state-check:\n");
+    //check victory card piles ----------------
+    test_state_value = test_GS.supplyCount[estate] +  test_GS.supplyCount[duchy] +  test_GS.supplyCount[province];
+    default_state_value = default_GS.supplyCount[estate] +  default_GS.supplyCount[duchy] +  default_GS.supplyCount[province];
+    printf("Victory card count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
+
+    test_state_value = 0;
+    default_state_value = 0;
+    //check kingdom card pile
+    for(i=0; i<10; i++){
+        test_state_value += test_GS.supplyCount[k[i]];
+        default_state_value += default_GS.supplyCount[k[i]];
+    }
+
+    printf("\nKingdom card state-check:\n");
+    printf("kingdom card count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
+
+
+    printf("\n---------------TESTING COMPLETE: %s---------------", TEST_CARD);
+    printf("\n---------------RESULTS: %i/%i State-checks Passed----------------\n\n", testPassCount, 8);
+
+
 }
-
-/*
- *     case village:
-      //+1 Card
-      drawCard(currentPlayer, state);
-
-      //+2 Actions
-      state->numActions = state->numActions + 2;
-
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
- */

@@ -21,123 +21,128 @@
 #define TEST_CARD "smithy"
 
 int main(int argc, char** argv) {
-    int seed = 100;
+
+    int newCards = 0;
+    int discarded = 1;
+    int extraCoins = 0;
+    int shuffledCards = 0;
+
+    int i;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int seed = 1000;
     int numPlayers = 2;
+    int currentPlayer = 0;
+    int otherPlayer = 1;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute, smithy, council_room};
-
-    int expectedValue;  // expected player hand size after smithy card is played
-    int test_passed = 0;
-    int curHandCount;
-    int handPos;
-    int currentPlayer = 0;
-    int deckCard = gardens; // not in k
-    int typeMatch = 1;
-    int checkCard;
-    int bonus = 0;
-
-    //initialize game state
+    int test_state_value;
+    int default_state_value;
+    int testPassCount = 0;
     struct gameState default_GS, test_GS;
-    test_GS.phase = 0;
 
-    initializeGame(numPlayers, k, seed, &test_GS);
+    // initialize a game state and player cards
+    initializeGame(numPlayers, k, seed, &default_GS);
+    printf("----------------- Testing Card: %s ----------------\n", TEST_CARD);
 
-
-    printf("\n--------------- Testing Card: %s ---------------\n", TEST_CARD);
-    //--------------- TEST 1: check player hand count after smithy card is played ---------------:
-
-    //reset game state
+    // copy the game state to a test case
     memcpy(&test_GS, &default_GS, sizeof(struct gameState));
+    cardEffect(smithy, choice1, choice2, choice3, &test_GS, handpos, &bonus);
 
-    //setup player/add smithy to hand
-    handPos = 0;
-    test_GS.hand[currentPlayer][handPos] = smithy;
-    test_GS.handCount[currentPlayer] = 1;
-    test_GS.numActions = 1;
+    printf("CARD EFFECT: +3 cards to hand (draw), -1 card from hand (discard)\n");
+    newCards = 3;
+    extraCoins = 0;
 
-    //make sure player has cards in deck
-    //int deckS = 10;
-    test_GS.deckCount[currentPlayer] = 10;
-    for (int i = 0; i < 10; i++) {
-        test_GS.deck[currentPlayer][i] = deckCard;
+    printf("Current player state-check:\n");
+    //check player hand count
+    test_state_value = test_GS.handCount[currentPlayer];
+    default_state_value = default_GS.handCount[currentPlayer] + newCards - discarded;
+    printf("hand count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
     }
 
-    curHandCount = 0;
-    expectedValue = 3;
-
-    //use smithy card
-    cardEffect(smithy, 0, 0, 0, &test_GS, 0, &bonus);
-
-    curHandCount = test_GS.handCount[currentPlayer];
-
-    printf("TEST 1: +3 cards to hand\n");
-    if (curHandCount == expectedValue) {
-        printf("RESULT: PASSED!\n");
-        test_passed += 1;
-    } else {
-        printf("RESULT: FAILED!\n");
-    }
-    printf("OUTPUT: Hand count: %d     expected:%d\n\n", curHandCount, expectedValue);
-
-    if (test_GS.hand[currentPlayer][0] != deckCard || test_GS.hand[currentPlayer][1] != deckCard) {
-        typeMatch = 0;
+    //check player deck count
+    test_state_value = test_GS.deckCount[currentPlayer];
+    default_state_value = default_GS.deckCount[currentPlayer] - newCards + shuffledCards;
+    printf("deck count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
     }
 
-    //--------------- TEST 2: check card types in player hand after playing smithy---------------:
-    printf("TEST 2: added cards from deck\n");
-    if (typeMatch == 1) {
-        printf("RESULT: PASSED!\n");
-        test_passed += 1;
-    } else {
-        printf("RESULT: FAILED!\n");
+    //check player coins
+    test_state_value = test_GS.coins;
+    default_state_value = default_GS.coins+extraCoins;
+    printf("coin count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
     }
-    printf("OUTPUT: Type match status: %d     expected:%d\n\n", typeMatch, 1);
 
-    //--------------- TEST 3: -3 cards from the deck---------------:
-    printf("TEST 3: -3 from deck\n");
-    if (test_GS.deckCount[currentPlayer] == 7) {
-        printf("RESULT: PASSED!\n");
-        test_passed += 1;
-    } else {
-        printf("RESULT: FAILED!\n");
+
+    //check other players state ----------------
+    printf("\nOther player state-check:\n");
+    //check player hand count
+    test_state_value = test_GS.handCount[otherPlayer];
+    default_state_value = default_GS.handCount[otherPlayer];
+    printf("hand count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
     }
-    printf("OUTPUT: Deck size: %d     expected:%d\n\n", test_GS.deckCount[currentPlayer], 7);
+
+    //check other player deck count
+    test_state_value = test_GS.deckCount[otherPlayer];
+    default_state_value = default_GS.deckCount[otherPlayer];
+    printf("deck count: %d |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
+
+    printf("\nVictory card state-check:\n");
+    //check victory card piles ----------------
+    test_state_value = test_GS.supplyCount[estate] +  test_GS.supplyCount[duchy] +  test_GS.supplyCount[province];
+    default_state_value = default_GS.supplyCount[estate] +  default_GS.supplyCount[duchy] +  default_GS.supplyCount[province];
+    printf("Victory card count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
+    test_state_value = 0;
+    default_state_value = 0;
+
+    //check kingdom card pile
+    for(i=0; i<10; i++){
+        test_state_value += test_GS.supplyCount[k[i]];
+        default_state_value += default_GS.supplyCount[k[i]];
+    }
+
+    printf("\nKingdom card state-check:\n");
+    printf("kingdom card count: %d  |  expected: %d", test_state_value, default_state_value);
+    if(test_state_value == default_state_value){
+        printf("   |   PASSED\n");
+        testPassCount++;
+    }else{
+        printf("   |   FAILED\n");
+    }
 
 
+    printf("\n---------------TESTING COMPLETE: %s---------------", TEST_CARD);
+    printf("\n---------------RESULTS: %i/%i State-checks Passed----------------\n\n", testPassCount, 7);
 
-    //TESTING COMPLETE--------------------------------------------------------
-    printf("---------------TESTING COMPLETE: %s---------------", TEST_CARD);
-    printf("\n---------------RESULTS: %i/%i Tests Passed----------------\n\n", test_passed, 3);
 
 }
-
-
-/*
-Smithy
-Original card effect found in switch statement
-case smithy:
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-
-
-
- void smithy_cardEffect(int handPos, int currentPlayer, struct gameState *state){
-	 //should +3 Cards - bug: +2 Cards
-      for (int i = 0; i < 2; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-
-}
-
- */
