@@ -1,8 +1,3 @@
-//
-// Random testing
-// Card being tested: village
-// Village effect: +2 Actions, +1 Card from deck
-//
 
 /*
  * randomtestcard1.c
@@ -40,7 +35,7 @@ void checkVillageCard(int player, struct gameState *post, int *deckCountErrors, 
     int cardEffect_check = cardEffect(village, choice1, choice2, choice3, post, handpos, &bonus);
 
     //check values - increment error count when needed
-    if(post->deckCount[player] != deckCountErrors-1){
+    if(post->deckCount[player] != preDeckCount-1){
         *deckCountErrors += 1;
     }
     if(post->handCount[player] != preHandCount+1){

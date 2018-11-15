@@ -18,32 +18,32 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.45395514">
+    <splitter split-orientation="horizontal" split-proportion="0.43506494">
       <split-first>
         <leaf>
-          <file leaf-file-name="randomtestcard1.c" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/randomtestcard1.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="733">
-                  <caret line="66" column="23" lean-forward="true" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="randomtestcard2.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/randomtestcard2.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" selection-start-line="5" selection-end-line="5" />
+                <state relative-caret-position="373">
+                  <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="randomtestadventurer.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="randomtestcard1.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/randomtestcard1.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="randomtestadventurer.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/randomtestadventurer.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret selection-end-line="5" />
+                <state relative-caret-position="461">
+                  <caret line="65" column="69" selection-start-line="65" selection-start-column="69" selection-end-line="65" selection-end-column="69" />
                 </state>
               </provider>
             </entry>
@@ -64,8 +64,8 @@
           <file leaf-file-name="dominion.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/dominion.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="640">
-                  <caret line="257" column="17" selection-start-line="257" selection-start-column="7" selection-end-line="257" selection-end-column="17" />
+                <state relative-caret-position="-176">
+                  <caret line="1291" column="6" selection-start-line="1291" selection-end-line="1291" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -73,8 +73,8 @@
           <file leaf-file-name="Makefile" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Makefile">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+                <state relative-caret-position="748">
+                  <caret line="44" selection-start-line="44" selection-end-line="44" />
                 </state>
               </provider>
             </entry>
@@ -89,18 +89,21 @@
       <find>village</find>
       <find>handPos</find>
       <find>cardeff</find>
-      <find>deckcounterr</find>
       <find>cardEffect</find>
+      <find>deckcounterr</find>
+      <find>checkVillageCar</find>
+      <find>coverage</find>
+      <find>smithy</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/randomtestadventurer.c" />
-        <option value="$PROJECT_DIR$/randomtestcard2.c" />
         <option value="$PROJECT_DIR$/dominion.h" />
-        <option value="$PROJECT_DIR$/Makefile" />
+        <option value="$PROJECT_DIR$/randomtestcard2.c" />
         <option value="$PROJECT_DIR$/randomtestcard1.c" />
+        <option value="$PROJECT_DIR$/Makefile" />
+        <option value="$PROJECT_DIR$/randomtestadventurer.c" />
       </list>
     </option>
   </component>
@@ -114,7 +117,7 @@
     <packageJsonPaths />
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="303" />
     <option name="y" value="-8" />
     <option name="width" value="974" />
@@ -167,12 +170,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542234139558</updated>
-      <workItem from="1542234141296" duration="11790000" />
+      <workItem from="1542234141296" duration="14301000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11790000" />
+    <option name="totallyTimeSpent" value="14301000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -217,38 +220,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/randomtestcard2.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/randomtestadventurer.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dominion.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="257" column="17" selection-start-line="257" selection-start-column="7" selection-end-line="257" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+        <state relative-caret-position="-176">
+          <caret line="1291" column="6" selection-start-line="1291" selection-end-line="1291" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/randomtestcard1.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="66" column="23" lean-forward="true" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+        <state relative-caret-position="119">
+          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/randomtestcard2.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/randomtestadventurer.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="65" column="69" selection-start-line="65" selection-start-column="69" selection-end-line="65" selection-end-column="69" />
         </state>
       </provider>
     </entry>
