@@ -45,7 +45,6 @@ public class UrlValidatorTest extends TestCase {
         assertTrue("URL should pass: http://google.com/$location",urlVal.isValid("http://google.com/$location"));
         assertTrue("URL should pass: http://google.com/location?/",urlVal.isValid("http://google.com/location?/"));
         assertTrue("URL should pass: http://www.google.com:1000",urlVal.isValid("http://www.google.com:1000"));
-        assertTrue("URL should pass: ftp://foo.bar.com/",urlVal.isValid("ftp://foo.bar.com/"));
 
         if(assertFailCount > 0)
             fail("Failed Manual Tests");
@@ -70,10 +69,11 @@ public class UrlValidatorTest extends TestCase {
 
         // valid schemes
         assertTrue("Scheme should pass: http ",urlVal.isValid("http://www.google.com"));
-        assertTrue("Scheme should pass: ftp ",urlVal.isValid("ftp://www.google.com"));
-        assertTrue("Scheme should pass: https ",urlVal.isValid("https://www.google.com"));
-        assertTrue("Scheme should pass: ftps ",urlVal.isValid("ftps://www.google.com"));
-        assertTrue("Scheme should pass: telnet ",urlVal.isValid("telnet://www.google.com"));
+        assertTrue("Scheme should pass: http ",urlVal.isValid("http://www.cnn.com"));
+        assertTrue("Scheme should pass: http ",urlVal.isValid("http://www.wiki.com"));
+        assertTrue("Scheme should pass: http ",urlVal.isValid("http://www.oregonstate.edu"));
+
+
 
         if(assertFailCount > 0)
             fail("Failed Scheme Testing");
