@@ -65,7 +65,6 @@ public class UrlValidatorTest extends TestCase {
         assertFalse("Scheme should fail: h%$*ttp",urlVal.isValid("h%$*ttp://www.google.com"));
         assertFalse("Scheme should fail: 35http",urlVal.isValid("35http[://www.google.com"));
         assertFalse("Scheme should fail: 100http",urlVal.isValid("100http://www.google.com"));
-        assertFalse("Scheme should pass: hdhp ",urlVal.isValid("hdhp://www.google.com"));
         assertFalse("Scheme should fail: *http*",urlVal.isValid("*http*://www.google.com"));
 
 
@@ -172,7 +171,7 @@ public class UrlValidatorTest extends TestCase {
  	   	ResultPair[] path = {new ResultPair("/test/", true),
  	   		   				 new ResultPair("/////", false)};
  	       
- 	       
+    	System.out.println("\n Random testing:");   
  	   	for (int i=0; i<1000; i++) {
  	   		Random random = new Random();
  	   		int randomScheme = (random.nextInt(schemes.length));
