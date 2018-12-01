@@ -10,7 +10,7 @@ public class UrlValidatorTest extends TestCase {
 
     static public void assertFalse(String message, boolean validate){
         if(validate != false) {
-            System.out.println("Test Error:   " + message);
+            System.out.println("Test Error: " + message);
             assertFailCount++;
         }
         else {
@@ -19,7 +19,7 @@ public class UrlValidatorTest extends TestCase {
     }
     static public void assertTrue(String message, boolean validate){
         if(validate != true) {
-            System.out.println("Test Error   : " + message);
+            System.out.println("Test Error: " + message);
             assertFailCount++;
         }
         else {
@@ -95,7 +95,7 @@ public class UrlValidatorTest extends TestCase {
         assertFalse("Authority should fail: http://www/badslash/edu",urlVal.isValid("http://www/badslash/edu"));
         
         //valid
-        assertTrue("Authority should fail: google",urlVal.isValid("http://www.google.com"));
+        assertTrue("Authority should pass: google",urlVal.isValid("http://www.google.com"));
         assertTrue("Authority should pass: go",urlVal.isValid("http://www.go.com"));
         assertTrue("Authority should pass: cnn",urlVal.isValid("http://www.cnn.com"));
         assertTrue("Authority should pass: 244.235.244.214",urlVal.isValid("http://244.235.244.214"));
