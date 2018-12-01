@@ -1,0 +1,4 @@
+"E:\Program Files (x86)\CLion 2018.1.6\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" "E:\Cameron School\Fall\SE2\ass3\files\CS362-004-F2018\projects\churccam\dominion"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/cmake-build-debug

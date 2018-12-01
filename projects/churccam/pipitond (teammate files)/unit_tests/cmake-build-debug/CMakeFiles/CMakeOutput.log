@@ -1,0 +1,49 @@
+The system is: Windows - 10.0.17134 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.13.26128/bin/Hostx86/x86/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Microsoft (R) C/C++ Optimizing Compiler Version 19.13.26129 for x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 14.13.26129.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdC/CMakeCCompilerId.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"nmake" "/NOLOGO" "cmTC_942c5\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.13.26128\bin\HostX86\x86\nmake.exe" -f CMakeFiles\cmTC_942c5.dir\build.make /nologo -L                  CMakeFiles\cmTC_942c5.dir\build
+Building C object CMakeFiles/cmTC_942c5.dir/testCCompiler.c.obj
+	C:\PROGRA~2\MICROS~3\2017\ENTERP~1\VC\Tools\MSVC\1413~1.261\bin\Hostx86\x86\cl.exe @C:\Users\Cameron\AppData\Local\Temp\nmD89D.tmp
+testCCompiler.c
+Linking C executable cmTC_942c5.exe
+	"E:\Program Files (x86)\CLion 2018.1.6\bin\cmake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_942c5.dir --manifests  -- C:\PROGRA~2\MICROS~3\2017\ENTERP~1\VC\Tools\MSVC\1413~1.261\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_942c5.dir\objects1.rsp @C:\Users\Cameron\AppData\Local\Temp\nmDA53.tmp
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"nmake" "/NOLOGO" "cmTC_f3650\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.13.26128\bin\HostX86\x86\nmake.exe" -f CMakeFiles\cmTC_f3650.dir\build.make /nologo -L                  CMakeFiles\cmTC_f3650.dir\build
+Building C object CMakeFiles/cmTC_f3650.dir/CMakeCCompilerABI.c.obj
+	C:\PROGRA~2\MICROS~3\2017\ENTERP~1\VC\Tools\MSVC\1413~1.261\bin\Hostx86\x86\cl.exe @C:\Users\Cameron\AppData\Local\Temp\nmDF44.tmp
+CMakeCCompilerABI.c
+Linking C executable cmTC_f3650.exe
+	"E:\Program Files (x86)\CLion 2018.1.6\bin\cmake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_f3650.dir --manifests  -- C:\PROGRA~2\MICROS~3\2017\ENTERP~1\VC\Tools\MSVC\1413~1.261\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_f3650.dir\objects1.rsp @C:\Users\Cameron\AppData\Local\Temp\nmE09D.tmp
+
+

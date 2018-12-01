@@ -1,0 +1,202 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/badTestDrawCard.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+dominion_helpers.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+string.h
+-
+stdio.h
+-
+assert.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/betterTestDrawCard.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+dominion_helpers.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+string.h
+-
+stdio.h
+-
+assert.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+dominion_helpers.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+stdio.h
+-
+math.h
+-
+stdlib.h
+-
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/interface.c
+stdio.h
+-
+math.h
+-
+assert.h
+-
+string.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+interface.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/interface.h
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/interface.h
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/playdom.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+stdio.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+stdlib.h
+-
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/player.c
+stdio.h
+-
+stdlib.h
+-
+assert.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+math.h
+-
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+interface.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/interface.h
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.c
+stdio.h
+-
+time.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rt.c
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+stdio.h
+-
+stdlib.h
+-
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/supplyTest.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+dominion_helpers.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+string.h
+-
+stdio.h
+-
+assert.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/testBuyCard.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+dominion_helpers.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+string.h
+-
+stdio.h
+-
+assert.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/testDrawCard.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+dominion_helpers.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+string.h
+-
+stdio.h
+-
+assert.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/testInit.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+stdio.h
+-
+stdlib.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/testShuffle.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+stdio.h
+-
+assert.h
+-
+
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/unittest1.c
+dominion.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion.h
+dominion_helpers.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/dominion_helpers.h
+string.h
+-
+stdio.h
+-
+assert.h
+-
+rngs.h
+E:/Cameron School/Fall/SE2/ass3/files/CS362-004-F2018/projects/churccam/dominion/rngs.h
+stdlib.h
+-
+
